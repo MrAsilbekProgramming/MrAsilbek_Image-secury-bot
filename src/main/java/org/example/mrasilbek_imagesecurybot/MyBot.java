@@ -230,11 +230,11 @@ public class MyBot extends TelegramLongPollingBot {
                     sendMessage(chatId, "Please select from the given button!");
                     stateMap.put(chatId, default2);
                 } else if (stateMap.getOrDefault(chatId, "").equals(signIn1)) {
-                    String sendsPassword = text;
-                    if (logins.containsValue(sendsPassword)) {
+                    String sendsLogin = text;
+                    if (logins.containsValue(sendsLogin)) {
                         sendMessage(chatId, "Enter the password on login now!");
-                        stateMap.put(chatId, signUp2);
-                        loginsAndPasswords.put(chatId, sendsPassword);
+                        stateMap.put(chatId, signIn2);
+                        loginsAndPasswords.put(chatId, sendsLogin);
                     } else {
                         sendMessage(chatId, "Login try again error!");
                         try {
@@ -243,15 +243,15 @@ public class MyBot extends TelegramLongPollingBot {
                             e.printStackTrace();
                         }
                     }
-                } else if (stateMap.getOrDefault(chatId, "").equals(signIn1)) {
+                } else if (stateMap.getOrDefault(chatId, "").equals(signIn2)) {
                     String sendsPassword = text;
 
                     String savedLogin = loginsAndPasswords.get(chatId);
-                    // birinchi biz hozir github ga bu loihani yuklab keyin davom etamiz sal miyya ham dam oladi shunda
+
 
                     if (logins.containsValue(savedLogin) && passwords.containsValue(sendsPassword)){
                         sendMessage(chatId, "Good, everything is set up correctly. Restart the bot with /start and use it as much as you want!");
-                        stateMap.put(chatId, "signIn3");
+                        stateMap.put(chatId, signIn3);
                     } else {
                         sendMessage(chatId, "Password try again error!");
                         try {
@@ -263,6 +263,12 @@ public class MyBot extends TelegramLongPollingBot {
                 } else if (stateMap.getOrDefault(chatId, "").equals(default1)) {
                     try {
                         execute(myBotSecury.login(chatId));
+                    } catch (TelegramApiException e) {
+                        e.printStackTrace();
+                    }
+                } else if (stateMap.getOrDefault(chatId, "").equals(signIn3)) {
+                    try {
+                        execute(myBotSecury.MainMenu(chatId));
                     } catch (TelegramApiException e) {
                         e.printStackTrace();
                     }
