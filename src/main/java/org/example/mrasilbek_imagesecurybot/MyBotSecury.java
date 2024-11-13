@@ -65,4 +65,41 @@ public class MyBotSecury {
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
     }
+    public SendMessage edit(Long chatId){
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText("Which information would you like to change?");
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsListInlie = new ArrayList<>();
+        List<InlineKeyboardButton> row = new ArrayList<>();
+        InlineKeyboardButton button1 = new InlineKeyboardButton("Edit Login");
+        button1.setCallbackData("editLogin");
+        row.add(button1);
+        InlineKeyboardButton button2 = new InlineKeyboardButton("Edit Password");
+        button2.setCallbackData("editPassword");
+        row.add(button2);
+        rowsListInlie.add(row);
+        List<InlineKeyboardButton> row1 = new ArrayList<>();
+        InlineKeyboardButton button3 = new InlineKeyboardButton("Edit Name");
+        button3.setCallbackData("editName");
+        row1.add(button3);
+        InlineKeyboardButton button4 = new InlineKeyboardButton("Edit Surname");
+        button4.setCallbackData("editSurname");
+        row1.add(button4);
+        InlineKeyboardButton button5 = new InlineKeyboardButton("Edit Gender");
+        button5.setCallbackData("editGender");
+        row1.add(button5);
+        rowsListInlie.add(row1);
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
+        InlineKeyboardButton button6 = new InlineKeyboardButton("Edit Phone Number");
+        button6.setCallbackData("editPhoneNumber");
+        row2.add(button6);
+        InlineKeyboardButton button7 = new InlineKeyboardButton("Edit Location");
+        button7.setCallbackData("editLocation");
+        row2.add(button7);
+        rowsListInlie.add(row2);
+        inlineKeyboardMarkup.setKeyboard(rowsListInlie);
+        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+        return sendMessage;
+    }
 }
