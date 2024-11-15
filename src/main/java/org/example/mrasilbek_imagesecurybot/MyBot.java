@@ -135,6 +135,17 @@ public class MyBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
         } else if (data.equals("editProfil")) {
+            SendMessage sendMessage1 = myBotSecury.edit(chatId2);
+            EditMessageText editMessageText = new EditMessageText();
+            editMessageText.setChatId(chatId2);
+            editMessageText.setMessageId(messageId);
+            editMessageText.setText(sendMessage1.getText());
+            editMessageText.setReplyMarkup((InlineKeyboardMarkup) sendMessage1.getReplyMarkup());
+            try {
+                execute(editMessageText);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
         } else if (data.equals("backHome")) {
             SendMessage sendMessage1 = myBotSecury.MainMenu(chatId2);
             EditMessageText editMessageText = new EditMessageText();
