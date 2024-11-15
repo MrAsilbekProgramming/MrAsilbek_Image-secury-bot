@@ -2,6 +2,8 @@ package org.example.mrasilbek_imagesecurybot;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.ChatLocation;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -121,14 +123,30 @@ public class MyBot extends TelegramLongPollingBot {
                 e.printStackTrace();
             }
             stateMap.put(chatId2, signIn1);
-        } else if (data.equals("editProfil")) {
+            SendMessage sendMessage1 = myBotSecury.edit(chatId2);
+            EditMessageText editMessageText = new EditMessageText();
+            editMessageText.setChatId(chatId2);
+            editMessageText.setMessageId(messageId);
+            editMessageText.setText(sendMessage1.getText());
+            editMessageText.setReplyMarkup((InlineKeyboardMarkup) sendMessage1.getReplyMarkup());
             try {
-                execute(myBotSecury.edit(chatId2));
+                execute(editMessageText);
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
-        } else if (data.equals("myProject")) {
-
+        } else if (data.equals("editProfil")) {
+        } else if (data.equals("backHome")) {
+            SendMessage sendMessage1 = myBotSecury.MainMenu(chatId2);
+            EditMessageText editMessageText = new EditMessageText();
+            editMessageText.setChatId(chatId2);
+            editMessageText.setMessageId(messageId);
+            editMessageText.setText(sendMessage1.getText());
+            editMessageText.setReplyMarkup((InlineKeyboardMarkup) sendMessage1.getReplyMarkup());
+            try {
+                execute(editMessageText);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
         }
     }
 

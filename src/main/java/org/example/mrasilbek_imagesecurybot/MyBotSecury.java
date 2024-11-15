@@ -98,6 +98,11 @@ public class MyBotSecury {
         button7.setCallbackData("editLocation");
         row2.add(button7);
         rowsListInlie.add(row2);
+        List<InlineKeyboardButton> row3 = new ArrayList<>();
+        InlineKeyboardButton button8 = new InlineKeyboardButton("⬅\uFE0F Back");
+        button8.setCallbackData("backHome");
+        row3.add(button8);
+        rowsListInlie.add(row3);
         inlineKeyboardMarkup.setKeyboard(rowsListInlie);
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
         return sendMessage;
